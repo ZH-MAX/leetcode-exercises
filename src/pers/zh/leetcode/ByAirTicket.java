@@ -24,33 +24,33 @@ public class ByAirTicket {
         if (month >= 5 && month <= 10) {
             //旺季
             // 3.继续判断舱位    头等舱、经济舱
-            if (seat == 0){
+            if (seat == 0) {
                 //头等舱
-                airTicket*=0.9;
-            }else if(seat == 1){
+                airTicket *= 0.9;
+            } else if (seat == 1) {
                 //经济舱
-                airTicket*=0.85;
-            }else {
+                airTicket *= 0.85;
+            } else {
                 System.out.println("非法的舱位！");
             }
 
         } else if ((month >= 1 && month <= 4) || (month >= 11 && month <= 12)) {
             //淡季
             //3.继续判断舱位    头等舱、经济舱
-            if (seat == 0){
+            if (seat == 0) {
                 //头等舱
-                airTicket*=0.7;
-            }else if(seat == 1){
+                airTicket *= 0.7;
+            } else if (seat == 1) {
                 //经济舱
-                airTicket*=0.65;
-            }else {
+                airTicket *= 0.65;
+            } else {
                 System.out.println("非法的舱位！");
             }
-        }else {
+        } else {
             System.out.println("非法的月份！");
         }
 //        4.计算出价格
-        System.out.println("机票的价格为："+airTicket);
+        System.out.println("机票的价格为：" + airTicket);
     }
 
 }

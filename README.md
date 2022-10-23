@@ -175,6 +175,10 @@ System.out.println(a==b);//true
 ```java
 String str1 = "qwe";
 String str2 = "qwe";
-System.out.println(str1==str2);
+System.out.println(str1==str2);//true	地址复用
+
+String str3 = new String("asd");
+String str4 = new String("asd");
+System.out.println(str3==str4);//false	每一次new出来的都是新的空间
 ```
 

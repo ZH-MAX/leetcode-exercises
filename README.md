@@ -160,3 +160,21 @@ public class Student{
 java.lang.String类代表字符串。Java程序中的所有字符串文字("abc")都为此类的对象。
 
 【注意】字符串的内容是不会发生改变的，它的对象在创建后不能被改变
+#### ==
+
+基本数据类型：==比较的是值
+
+```java
+int a = 10;
+int b = 10;
+System.out.println(a==b);//true
+```
+
+引用数据类型：==比较的是地址值
+
+```java
+String str1 = "qwe";
+String str2 = "qwe";
+System.out.println(str1==str2);
+```
+

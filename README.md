@@ -210,3 +210,95 @@ System.out.println(str3==str4);//false	每一次new出来的都是新的空间
 并行：就是两个任务同时运行（多个cpu）
 
 并发：是指两个任务同时请求运行，而处理器一次只能接受一个任务，就会把这两个任务安排轮流执行，由于cpu时间片运行时间短，就会感觉这两个任务在同时执行。
+
+## 设计模式7大原则
+
+好处：代码的复用性、扩展性、维护性，解耦（耦合度）
+
+1. 开闭原则：一个软件实体应当对扩展开放，对修改关闭。
+
+  1. 好处
+    - 可以使原来的测试代码依旧可以运行，只需要对扩展的代码进行测试即可
+    -  可以提高代码的复用性
+    - 可以提高系统的维护性
+  2. 抽象约束
+    - 通过接口或者抽象类约束扩展，对扩展进行边界限定，不允许出现在接口或抽象类中不存在的public方法；
+    - 参数类型、引用对象尽量使用接口或者抽象类，而不是实现类；（针对抽象编程）
+    - 抽象层尽量保持稳定，一旦确定即不允许修改。
+  3. 元数据控制模块行为
+
+   举例： 某公司开发的租车系统有一个押金支付功能，支付方式有支付宝、阿里支付，后期可能还有银联支付、易支付等等，原始的设计方案如下：
+
+   ```java
+   // 客户端调用-押金支付选择支付手段
+   public class DepositPay {
+   	void pay(String type){
+   		if(type.equals("ali")){
+   			AliPay aliPay = new AliPay();
+   			aliPay.pay();
+   		}else if(type.equals("wx")){
+   			WXPay wxPay = new WXPay();
+   			wxPay.pay();
+   		}
+   	}
+   }
+   // 支付宝支付
+   public class AliPay {
+       public void pay() {
+       	System.out.println("正在使用支付宝支付");
+       }
+   }
+   // 微信支付
+   public class WXPay{
+       public void pay() {
+       	System.out.println("正在使用微信支付");
+       }
+   }
+   ```
+
+   使用接口设计
+
+   ```java
+   public interface Pay {
+       // 支付
+       void pay();
+   }
+   public class AliPay implements Pay {
+       @Override
+       public void pay() {
+       	System.out.println("正在使用支付宝支付");
+       }
+   }
+   public class WXPay implements Pay{
+       @Override
+       public void pay() {
+       	System.out.println("正在使用微信支付");
+       }
+   }
+   // 客户端调用-押金支付选择支付手段
+   public class DepositPay {
+   // 支付方式 (这边可以通过依赖注入的方式来注入)
+   // 支付方式可以写在配置文件中
+   // 现在不管你选用何种方式，我都不需要更改
+       @Autowired
+       Pay payMode;
+       void pay(Pay payMode){
+       	payMode.pay();
+       }
+   }
+   ```
+
+
+
+2. 单一原则
+
+3. 里氏代换原则
+
+4. 依赖倒转原则
+
+5. 接口隔离原则
+
+6. 合成复用原则
+
+7. 迪米特原则
+
